@@ -1,0 +1,40 @@
+name: 'V1-B$(Date:yyyyMMdd)-$(BuildID)'
+
+parameters:
+  - name: forceDevDeploy
+    displayName: "Force deployment to DEV"
+    type: boolean
+    default: false
+  - name: blockOnPossibleDataLoss
+    displayName: "Block Database deployment on possible Data Loss?"
+    type: boolean
+    default: true
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - '*'
+
+  paths:
+    include:
+    - src/Defra.Trade.API.CertificatesStore.Database/*
+
+variables:
+  ModelName: Defra.Trade.API.CertificatesStore.Database
+
+resources:
+  repositories:
+    - repository: PipelineCommon
+      name: DEFRA-TRD/Defra.TRD.Pipeline.Common
+      type: git
+      ref: master
+
+extends:
+  template: /templates/basic-sqlmodel-deploy.yaml@PipelineCommon
+  parameters:
+    forceDevDeploy: '${{ parameters.forceDevDeploy }}'
+    blockOnPossibleDataLoss: '${{ parameters.blockOnPossibleDataLoss }}'
+    sqlModelName: '$(ModelName)'
+    SqlServerName: 'tradbssq1001'
+    SqlDatabaseName: 'trade-daera-certificates'

@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <SonarQubeTestProject>false</SonarQubeTestProject>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Defra.Trade.Common" Version="4.0.2" />
+        <PackageReference Include="Defra.Trade.Common.Api" Version="3.0.2" GeneratePathProperty="true">
+            <ApiXmlDoc>$(PkgDefra_Trade_Common_Api)\lib\net8.0\Defra.Trade.Common.Api.xml</ApiXmlDoc>
+        </PackageReference>
+        <PackageReference Include="FluentAssertions" Version="6.12.1" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <NoWarn>1701;1702;CS1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <NoWarn>1701;1702;CS1591</NoWarn>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Defra.Trade.API.CertificatesStore.Logic\Defra.Trade.API.CertificatesStore.Logic.csproj" />
+    </ItemGroup>
+
+	<Target Name="BuildCopyPackagesXmlDoc" AfterTargets="Build">
+		<ItemGroup>
+			<PackageReferenceFiles Condition="%(PackageReference.ApiXmlDoc) != ''" Include="%(PackageReference.ApiXmlDoc)" />
+		</ItemGroup>
+		<Copy SourceFiles="@(PackageReferenceFiles)" DestinationFolder="$(OutDir)" />
+	</Target>
+
+	<Target Name="PublishCopyPackagesXmlDoc" AfterTargets="PrepareForPublish">
+		<ItemGroup>
+			<PackageReferenceFiles Condition="%(PackageReference.ApiXmlDoc) != ''" Include="%(PackageReference.ApiXmlDoc)" />
+		</ItemGroup>
+		<Copy SourceFiles="@(PackageReferenceFiles)" DestinationFolder="$(PublishDir)" />
+	</Target>
+</Project>

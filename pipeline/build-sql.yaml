@@ -1,0 +1,37 @@
+name: 'V1-B$(Date:yyyyMMdd)-$(BuildID)'
+
+parameters:
+  - name: forceDevDeploy
+    displayName: "Force deployment to DEV"
+    type: boolean
+    default: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - '*'
+  paths:
+    include:
+      - src/Defra.Trade.API.CertificatesStore.Database/*
+      - pipeline/build-sql.yaml
+
+resources:
+  repositories:
+    - repository: PipelineCommon
+      name: DEFRA-TRD/Defra.TRD.Pipeline.Common
+      type: git
+      ref: master
+
+extends:
+  template: /templates/basic-sqlmodel-deploy.yaml@PipelineCommon
+  parameters:
+    forceDevDeploy: '${{ parameters.forceDevDeploy }}'
+    sqlServerName: 'tradbssq1001'
+    sqlDatabaseName: 'trade-daera-certificates'
+    sqlModelSourcePath: 'src/Defra.Trade.API.CertificatesStore.Database'
+    sqlModelName: 'Defra.Trade.API.CertificatesStore.Database'
+    StartUpProjectPath: 'src/Defra.Trade.API.CertificatesStore/Defra.Trade.API.CertificatesStore.csproj'
+    useStartUpProject: true
+    useMigrations: true
+    buildWithDotNetCoreCLI: true

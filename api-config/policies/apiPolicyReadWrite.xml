@@ -1,0 +1,24 @@
+[concat('<policies>
+    <inbound>
+        <base />
+        <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid." require-expiration-time="true" require-scheme="Bearer" require-signed-tokens="true" clock-skew="900" output-token-variable-name="jwt">
+            <openid-config url="', concat('https://login.microsoftonline.com/', subscription().tenantId, '/.well-known/openid-configuration') ,'" />
+            <required-claims>
+                <claim name="roles" match="all">
+                    <value>', parameters('roles').roleTradeDaeraCertificatesInternalRead, '</value>
+                    <value>', parameters('roles').roleTradeDaeraCertificatesInternalUpdate, '</value>
+                </claim>
+            </required-claims>
+        </validate-jwt>
+        <authentication-managed-identity resource="', parameters('aspClientId'), '" ignore-error="false" />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>')]
