@@ -1,0 +1,117 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{41D7C9CC-47FA-4733-B129-2439DA1717B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api-config", "api-config", "{D0AE798A-0402-4762-9682-DCD84573B93E}"
+	ProjectSection(SolutionItems) = preProject
+		api-config\trade-api-certificates-store-api.yml = api-config\trade-api-certificates-store-api.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipeline", "pipeline", "{9F1AD47D-2F92-450D-A1DF-66C22490C3DF}"
+	ProjectSection(SolutionItems) = preProject
+		pipeline\build-api.yaml = pipeline\build-api.yaml
+		pipeline\build-model.yaml = pipeline\build-model.yaml
+		pipeline\build-sql.yaml = pipeline\build-sql.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F0AB36C9-BC3E-486A-9C93-AFB83304DC18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "policies", "policies", "{92EAB053-85D1-48A5-8B35-38FF03CA93ED}"
+	ProjectSection(SolutionItems) = preProject
+		api-config\policies\apiPolicy204MockResponses.xml = api-config\policies\apiPolicy204MockResponses.xml
+		api-config\policies\apiPolicyGeneric.xml = api-config\policies\apiPolicyGeneric.xml
+		api-config\policies\apiPolicyRead.xml = api-config\policies\apiPolicyRead.xml
+		api-config\policies\apiPolicyReadWrite.xml = api-config\policies\apiPolicyReadWrite.xml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.IntegrationTests", "test\Defra.Trade.API.CertificatesStore.IntegrationTests\Defra.Trade.API.CertificatesStore.IntegrationTests.csproj", "{1935A05E-9584-4E2D-A23B-E8D8D43CC766}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore", "src\Defra.Trade.API.CertificatesStore\Defra.Trade.API.CertificatesStore.csproj", "{CE27C6C2-9B08-44B5-A7F3-1391CEE4D787}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.Database", "src\Defra.Trade.API.CertificatesStore.Database\Defra.Trade.API.CertificatesStore.Database.csproj", "{2626B27F-DFE5-4B2B-B877-CA30402DE727}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.Logic", "src\Defra.Trade.API.CertificatesStore.Logic\Defra.Trade.API.CertificatesStore.Logic.csproj", "{75EA6C00-137A-4553-AC8E-199B894C0D8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.Repository", "src\Defra.Trade.API.CertificatesStore.Repository\Defra.Trade.API.CertificatesStore.Repository.csproj", "{D7852754-6F49-4FDA-93CC-2A0C25B8FF1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.Tests", "test\Defra.Trade.API.CertificatesStore.Tests\Defra.Trade.API.CertificatesStore.Tests.csproj", "{8A12ABA7-FB72-4D48-A149-8E142A331847}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.Database.Tests", "test\Defra.Trade.API.CertificatesStore.Database.Tests\Defra.Trade.API.CertificatesStore.Database.Tests.csproj", "{E2244313-B810-4F52-8419-1DB4652587A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.Repository.Tests", "test\Defra.Trade.API.CertificatesStore.Repository.Tests\Defra.Trade.API.CertificatesStore.Repository.Tests.csproj", "{964D0635-25BC-48C2-BE8A-935A2D7A6392}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Defra.Trade.API.CertificatesStore.Logic.Tests", "test\Defra.Trade.API.CertificatesStore.Logic.Tests\Defra.Trade.API.CertificatesStore.Logic.Tests.csproj", "{2C39E6E6-4921-43D2-94EB-3159651E1248}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07DDE980-5308-473B-BBC1-47E3CB70DE60}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		CONTRIBUTING.md = CONTRIBUTING.md
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1935A05E-9584-4E2D-A23B-E8D8D43CC766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1935A05E-9584-4E2D-A23B-E8D8D43CC766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1935A05E-9584-4E2D-A23B-E8D8D43CC766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1935A05E-9584-4E2D-A23B-E8D8D43CC766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE27C6C2-9B08-44B5-A7F3-1391CEE4D787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE27C6C2-9B08-44B5-A7F3-1391CEE4D787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE27C6C2-9B08-44B5-A7F3-1391CEE4D787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE27C6C2-9B08-44B5-A7F3-1391CEE4D787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2626B27F-DFE5-4B2B-B877-CA30402DE727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2626B27F-DFE5-4B2B-B877-CA30402DE727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2626B27F-DFE5-4B2B-B877-CA30402DE727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2626B27F-DFE5-4B2B-B877-CA30402DE727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75EA6C00-137A-4553-AC8E-199B894C0D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75EA6C00-137A-4553-AC8E-199B894C0D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75EA6C00-137A-4553-AC8E-199B894C0D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75EA6C00-137A-4553-AC8E-199B894C0D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7852754-6F49-4FDA-93CC-2A0C25B8FF1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7852754-6F49-4FDA-93CC-2A0C25B8FF1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7852754-6F49-4FDA-93CC-2A0C25B8FF1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7852754-6F49-4FDA-93CC-2A0C25B8FF1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A12ABA7-FB72-4D48-A149-8E142A331847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A12ABA7-FB72-4D48-A149-8E142A331847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A12ABA7-FB72-4D48-A149-8E142A331847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A12ABA7-FB72-4D48-A149-8E142A331847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2244313-B810-4F52-8419-1DB4652587A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2244313-B810-4F52-8419-1DB4652587A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2244313-B810-4F52-8419-1DB4652587A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2244313-B810-4F52-8419-1DB4652587A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964D0635-25BC-48C2-BE8A-935A2D7A6392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964D0635-25BC-48C2-BE8A-935A2D7A6392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964D0635-25BC-48C2-BE8A-935A2D7A6392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964D0635-25BC-48C2-BE8A-935A2D7A6392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C39E6E6-4921-43D2-94EB-3159651E1248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C39E6E6-4921-43D2-94EB-3159651E1248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C39E6E6-4921-43D2-94EB-3159651E1248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C39E6E6-4921-43D2-94EB-3159651E1248}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92EAB053-85D1-48A5-8B35-38FF03CA93ED} = {D0AE798A-0402-4762-9682-DCD84573B93E}
+		{1935A05E-9584-4E2D-A23B-E8D8D43CC766} = {F0AB36C9-BC3E-486A-9C93-AFB83304DC18}
+		{CE27C6C2-9B08-44B5-A7F3-1391CEE4D787} = {41D7C9CC-47FA-4733-B129-2439DA1717B2}
+		{2626B27F-DFE5-4B2B-B877-CA30402DE727} = {41D7C9CC-47FA-4733-B129-2439DA1717B2}
+		{75EA6C00-137A-4553-AC8E-199B894C0D8A} = {41D7C9CC-47FA-4733-B129-2439DA1717B2}
+		{D7852754-6F49-4FDA-93CC-2A0C25B8FF1C} = {41D7C9CC-47FA-4733-B129-2439DA1717B2}
+		{8A12ABA7-FB72-4D48-A149-8E142A331847} = {F0AB36C9-BC3E-486A-9C93-AFB83304DC18}
+		{E2244313-B810-4F52-8419-1DB4652587A6} = {F0AB36C9-BC3E-486A-9C93-AFB83304DC18}
+		{964D0635-25BC-48C2-BE8A-935A2D7A6392} = {F0AB36C9-BC3E-486A-9C93-AFB83304DC18}
+		{2C39E6E6-4921-43D2-94EB-3159651E1248} = {F0AB36C9-BC3E-486A-9C93-AFB83304DC18}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E5DEB4B-4674-443A-977A-90C637981A92}
+	EndGlobalSection
+EndGlobal

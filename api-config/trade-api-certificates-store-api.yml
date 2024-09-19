@@ -1,0 +1,94 @@
+version: 0.0.1
+apimServiceName: "#{{ Environment.Name }}TRA#{{ nc-function-infrastructure }}#{{ nc-resource-apimanagement }}1002"
+apiVersionSets:
+  - id: trade-api-certificates-store-dev
+    displayName: Trade Certificates Store - DEV
+    description: Trade Certificates Store API
+    versioningScheme: Segment
+  - id: trade-api-certificates-store
+    displayName: Trade Certificates Store
+    description: Trade Certificates Store API
+    versioningScheme: Segment
+apis:
+  - name: trade-api-certificates-store-v1-dev
+    type: http
+    displayName: Trade Certificates Store - DEV
+    description: Trade General Certificates Store API
+    serviceUrl: https://defra.mock
+    openApiSpec: v1\swagger.json
+    policy: policies\apiPolicyGeneric.xml
+    suffix: certificates-store/dev
+    subscriptionRequired: false
+    apiVersion: v1
+    apiVersionDescription: Version 1 Trade Certificates Store API DEV
+    apiVersionSetId: trade-api-certificates-store-dev
+    products: trd-dev
+    operations:
+      SaveEHCOGeneralCertificateApplication:
+        policy: policies\apiPolicy204MockResponses.xml
+      SaveIDCOMSGeneralCertificateEnrichment:
+        policy: policies\apiPolicy204MockResponses.xml
+    authenticationSettings:
+      oAuth2:
+        authorizationServerId: OAuth-Server
+      subscriptionKeyRequired: false
+    diagnostic:
+      name: applicationinsights
+      alwaysLog: allErrors
+      loggerId: "#{{ Environment.Name }}TRD#{{ nc-function-infrastructure }}#{{ nc-resource-appinsights }}1001"
+      sampling:
+        samplingType: fixed
+        percentage: 100
+      enableHttpCorrelationHeaders: true
+  - name: trade-api-certificates-store-v1
+    type: http
+    displayName: Trade Certificates Store
+    description: Trade General Certificates Store API
+    serviceUrl: "https://#{{ Environment.Name }}TRA#{{ nc-function-web }}#{{ nc-resource-webapp }}1016.azurewebsites.net/"
+    openApiSpec: v1\swagger.json
+    policy: policies\apiPolicyGeneric.xml
+    suffix: certificates-store
+    subscriptionRequired: true
+    apiVersion: v1
+    apiVersionDescription: Version 1 Trade Certificates Store API
+    apiVersionSetId: trade-api-certificates-store
+    products: trd-prod
+    operations:
+      SaveEHCOGeneralCertificateApplication:
+        policy: policies\apiPolicyReadWrite.xml
+      SaveIDCOMSGeneralCertificateEnrichment:
+        policy: policies\apiPolicyReadWrite.xml
+      SaveDocumentRetrieved:
+        policy: policies\apiPolicyReadWrite.xml
+      GetDocumentRetrieved:
+        policy: policies\apiPolicyRead.xml
+      CheckHealth:
+        policy: policies\apiPolicyRead.xml
+    authenticationSettings:
+      oAuth2:
+        authorizationServerId: OAuth-Server
+      subscriptionKeyRequired: true
+    diagnostic:
+      name: applicationinsights
+      alwaysLog: allErrors
+      loggerId: "#{{ Environment.Name }}TRD#{{ nc-function-infrastructure }}#{{ nc-resource-appinsights }}1001"
+      sampling:
+        samplingType: fixed
+        percentage: 100
+      enableHttpCorrelationHeaders: true
+    dependsOn: trade-api-certificates-store-v1-dev
+templateParameters:
+  - name: secondaryServiceUrl
+    value: "https://#{{ Environment.Name }}TRA#{{ nc-function-web }}#{{ nc-resource-webapp }}1216.azurewebsites.net/"
+  - name: aspClientId
+    reference:
+      keyVault:
+        id: "/subscriptions/#{{ subscriptionId }}/resourceGroups/#{{ Environment.Name }}TRD#{{ nc-function-infrastructure }}#{{ nc-resource-resourcegroup }}1001/providers/Microsoft.KeyVault/vaults/#{{ Environment.Name }}TRD#{{ nc-function-infrastructure }}#{{ nc-resource-keyvault }}1001"
+      secretName: "TRAWEBAS1003-OAuth-ClientId"
+  - name: roles
+    values:
+      roleTradeDaeraCertificatesInternalRead: "#{{ roleTradeDaeraCertificatesInternalRead }}"
+      roleTradeDaeraCertificatesInternalUpdate: "#{{ roleTradeDaeraCertificatesInternalUpdate }}"
+outputLocation: publish-templates
+linked: false
+baseFileName: trade-api-certificates-store
