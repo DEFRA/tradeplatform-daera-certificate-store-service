@@ -1,0 +1,81 @@
+name: 'V1-B$(Date:yyyyMMdd)-$(BuildID)'
+
+parameters:
+  - name: forceDevDeploy
+    displayName: "Force deployment to DEV"
+    type: boolean
+    default: false
+  - name: deployToSecondary
+    displayName: "Select Secondary Region"
+    type: string
+    default: PRD
+    values:
+      - None
+      - DEV
+      - TST
+      - PRE
+      - PRD
+  - name: runCodeGeneration
+    displayName: "Generate Client Libraries?"
+    type: boolean
+    default: false
+  - name: libraryVersion
+    displayName: "Client Library Version Number"
+    type: string
+    default: '1.0.0'
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - '*'
+  paths:
+    include:
+      - '*'
+
+resources:
+  repositories:
+    - repository: PipelineCommon
+      name: DEFRA-TRD/Defra.TRD.Pipeline.Common
+      type: git
+      ref: master
+  pipelines:
+    - pipeline: INFRA
+      source: Defra.Trade.API.Infra Trade Daera Certificates Api Int
+      trigger:
+        branches:
+          include:
+            - '*'
+        stages:
+          - DEV
+
+variables:
+  APIName: Defra.Trade.API.CertificatesStore
+
+extends:
+  template: /templates/basic-webapp-deploy-pipeline.yaml@PipelineCommon
+  parameters:
+    forceDevDeploy: ${{ parameters.forceDevDeploy }}
+    deployToSecondary: ${{ parameters.deployToSecondary}}
+    appName: $(APIName)
+    appProject: TRA
+    appInstanceNumber: $(nc-region-id)16
+    scr: GH
+    buildProjects: |
+      **/*.csproj
+    publishProject: '**/*API.CertificatesStore.csproj'
+    publishArguments: '--configuration Release --self-contained true --runtime win-x86'
+    connectionStrings: '[{"name": "sql_db", "value": "Server=tcp:$(sqlServerName),1433;Database=trade-daera-certificates;", "type": "SQLAzure", "slotSetting": false},{"name": "sql_db_ef", "value": "Server=tcp:$(sqlServerName),1433;Database=trade-daera-certificates;Authentication=Active Directory Managed Identity;", "type": "SQLAzure", "slotSetting": false}]'
+    setupMiUser: 'true'
+    databaseName: 'trade-daera-certificates'
+    codeGeneration:
+      runClientGeneration: ${{ parameters.runCodeGeneration }}
+      ApiClientName: 'API.CertificatesStore'
+      ApiVersion: 'v1'
+      Version: ${{ parameters.libraryVersion }}
+      IsExternal: false
+    publishAPIMApi:
+      apiConfig: '**/api-config/trade-api-certificates-store-api.yml'
+      apiProjectName: '$(APIName)'
+      apiTemplate: 'trade-api-certificates-store'
+    runHealthCheck: true
