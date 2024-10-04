@@ -1,10 +1,7 @@
 // Copyright DEFRA (c). All rights reserved.
 // Licensed under the Open Government License v3.0.
 
-using Defra.Trade.API.CertificatesStore.Database.Context;
-using Defra.Trade.API.CertificatesStore.Database.Services.Interfaces;
 using Defra.Trade.API.CertificatesStore.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -15,8 +12,6 @@ public class CertificatesStoreApplicationFactory<TStartup> : WebApplicationFacto
     public Mock<ICertificatesStoreRepository> CertificatesStoreRepository { get; set; }
     public Mock<IEnrichmentStoreRepository> EnrichmentStoreRepository { get; set; }
     public Mock<IGeneralCertificateDocumentRepository> GeneralCertificateDocumentRepository { get; set; }
-    public CertificatesStoreDbContext CertificatesStoreDbContext { get; set; }
-    public Mock<IDbHealthCheckService> DbHealthCheckService { get; set; }
 
     public CertificatesStoreApplicationFactory()
     {
@@ -24,24 +19,9 @@ public class CertificatesStoreApplicationFactory<TStartup> : WebApplicationFacto
         CertificatesStoreRepository = new Mock<ICertificatesStoreRepository>();
         EnrichmentStoreRepository = new Mock<IEnrichmentStoreRepository>();
         GeneralCertificateDocumentRepository = new Mock<IGeneralCertificateDocumentRepository>();
-        CertificatesStoreDbContext = GetDatabaseContext();
-        DbHealthCheckService = new Mock<IDbHealthCheckService>();
     }
 
     private string ApiVersion { get; set; } = "1";
-
-    private static CertificatesStoreDbContext GetDatabaseContext()
-    {
-        var options = new DbContextOptionsBuilder<CertificatesStoreDbContext>()
-            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-            .Options;
-
-        var databaseContext = new CertificatesStoreDbContext(options);
-
-        databaseContext.Database.EnsureCreated();
-
-        return databaseContext;
-    }
 
     protected override void ConfigureClient(HttpClient client)
     {
@@ -78,8 +58,6 @@ public class CertificatesStoreApplicationFactory<TStartup> : WebApplicationFacto
             services.Replace(ServiceDescriptor.Singleton(CertificatesStoreRepository.Object));
             services.Replace(ServiceDescriptor.Singleton(EnrichmentStoreRepository.Object));
             services.Replace(ServiceDescriptor.Singleton(GeneralCertificateDocumentRepository.Object));
-            services.Replace(ServiceDescriptor.Singleton(CertificatesStoreDbContext));
-            services.Replace(ServiceDescriptor.Singleton(DbHealthCheckService.Object));
         });
     }
 }
