@@ -6,8 +6,6 @@ using Defra.Trade.API.CertificatesStore.Database.Services;
 using Defra.Trade.API.CertificatesStore.Database.Services.Interfaces;
 using Defra.Trade.API.CertificatesStore.Logic;
 using Defra.Trade.API.CertificatesStore.Logic.Mappers;
-using Defra.Trade.API.CertificatesStore.Logic.Services;
-using Defra.Trade.API.CertificatesStore.Logic.Services.Interfaces;
 using Defra.Trade.API.CertificatesStore.Settings;
 using Defra.Trade.API.CertificatesStore.V2.Services;
 using Defra.Trade.API.CertificatesStore.V2.Services.Interfaces;
@@ -45,8 +43,7 @@ public static class ServiceRegistrations
             .AddDbContextCheck<CertificatesStoreDbContext>();
 
         services
-             .AddScoped<IDbHealthCheckService, DbHealthCheckService<CertificatesStoreDbContext>>()
-             .AddScoped<IMonitorService, MonitorService>();
+             .AddScoped<IDbHealthCheckService, DbHealthCheckService<CertificatesStoreDbContext>>();
 
         return services;
     }
