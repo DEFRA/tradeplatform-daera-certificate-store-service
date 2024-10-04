@@ -2,8 +2,6 @@
 // Licensed under the Open Government License v3.0.
 
 using Defra.Trade.API.CertificatesStore.Database.Context;
-using Defra.Trade.API.CertificatesStore.Database.Services;
-using Defra.Trade.API.CertificatesStore.Database.Services.Interfaces;
 using Defra.Trade.API.CertificatesStore.Logic;
 using Defra.Trade.API.CertificatesStore.Logic.Mappers;
 using Defra.Trade.API.CertificatesStore.Settings;
@@ -41,9 +39,6 @@ public static class ServiceRegistrations
         services
             .AddHealthChecks()
             .AddDbContextCheck<CertificatesStoreDbContext>();
-
-        services
-             .AddScoped<IDbHealthCheckService, DbHealthCheckService<CertificatesStoreDbContext>>();
 
         return services;
     }
