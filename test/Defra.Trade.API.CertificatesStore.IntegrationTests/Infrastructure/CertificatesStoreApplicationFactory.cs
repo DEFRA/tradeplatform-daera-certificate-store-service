@@ -3,7 +3,6 @@
 
 using Defra.Trade.API.CertificatesStore.Database.Context;
 using Defra.Trade.API.CertificatesStore.Database.Services.Interfaces;
-using Defra.Trade.API.CertificatesStore.Logic.Services.Interfaces;
 using Defra.Trade.API.CertificatesStore.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +17,6 @@ public class CertificatesStoreApplicationFactory<TStartup> : WebApplicationFacto
     public Mock<IGeneralCertificateDocumentRepository> GeneralCertificateDocumentRepository { get; set; }
     public CertificatesStoreDbContext CertificatesStoreDbContext { get; set; }
     public Mock<IDbHealthCheckService> DbHealthCheckService { get; set; }
-    public Mock<IMonitorService> MonitorService { get; set; }
 
     public CertificatesStoreApplicationFactory()
     {
@@ -28,7 +26,6 @@ public class CertificatesStoreApplicationFactory<TStartup> : WebApplicationFacto
         GeneralCertificateDocumentRepository = new Mock<IGeneralCertificateDocumentRepository>();
         CertificatesStoreDbContext = GetDatabaseContext();
         DbHealthCheckService = new Mock<IDbHealthCheckService>();
-        MonitorService = new Mock<IMonitorService>();
     }
 
     private string ApiVersion { get; set; } = "1";
@@ -83,7 +80,6 @@ public class CertificatesStoreApplicationFactory<TStartup> : WebApplicationFacto
             services.Replace(ServiceDescriptor.Singleton(GeneralCertificateDocumentRepository.Object));
             services.Replace(ServiceDescriptor.Singleton(CertificatesStoreDbContext));
             services.Replace(ServiceDescriptor.Singleton(DbHealthCheckService.Object));
-            services.Replace(ServiceDescriptor.Singleton(MonitorService.Object));
         });
     }
 }
