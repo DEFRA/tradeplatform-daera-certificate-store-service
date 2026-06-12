@@ -1,7 +1,6 @@
 ﻿// Copyright DEFRA (c). All rights reserved.
 // Licensed under the Open Government License v3.0.
 
-using System.Linq;
 using AutoMapper;
 using Defra.Trade.API.CertificatesStore.Database.Models;
 using Defra.Trade.API.CertificatesStore.Logic.Extensions;

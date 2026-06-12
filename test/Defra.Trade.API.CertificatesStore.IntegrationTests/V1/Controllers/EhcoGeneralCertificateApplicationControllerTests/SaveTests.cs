@@ -10,12 +10,12 @@ using Defra.Trade.Common.Api.Dtos;
 
 namespace Defra.Trade.API.CertificatesStore.IntegrationTests.V1.Controllers.EhcoGeneralCertificateApplicationControllerTests;
 
-public class SaveTests : IClassFixture<CertificatesStoreApplicationFactory<Startup>>
+public class SaveTests : IClassFixture<CertificatesStoreApplicationFactory<Program>>
 {
-    private readonly CertificatesStoreApplicationFactory<Startup> _webApplicationFactory;
+    private readonly CertificatesStoreApplicationFactory<Program> _webApplicationFactory;
     private readonly Fixture _fixture;
 
-    public SaveTests(CertificatesStoreApplicationFactory<Startup> webApplicationFactory)
+    public SaveTests(CertificatesStoreApplicationFactory<Program> webApplicationFactory)
     {
         _webApplicationFactory = webApplicationFactory;
 
