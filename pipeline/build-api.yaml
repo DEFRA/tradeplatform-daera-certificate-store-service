@@ -66,7 +66,7 @@ extends:
     publishProject: '**/*API.CertificatesStore.csproj'
     publishArguments: '--configuration Release --self-contained true --runtime win-x86'
     connectionStrings: '[{"name": "sql_db", "value": "Server=tcp:$(sqlServerName),1433;Database=trade-daera-certificates;", "type": "SQLAzure", "slotSetting": false},{"name": "sql_db_ef", "value": "Server=tcp:$(sqlServerName),1433;Database=trade-daera-certificates;Authentication=Active Directory Managed Identity;", "type": "SQLAzure", "slotSetting": false}]'
-    setupMiUser: 'false'
+    setupMiUser: 'true'
     databaseName: 'trade-daera-certificates'
     codeGeneration:
       runClientGeneration: ${{ parameters.runCodeGeneration }}
