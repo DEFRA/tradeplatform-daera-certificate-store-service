@@ -13,6 +13,7 @@ namespace Defra.Trade.API.CertificatesStore;
 /// <summary>
 /// Application entry point.
 /// </summary>
+[ExcludeFromCodeCoverage(Justification = "Tested as part of system integration tests.")]
 public sealed class Program
 {
     private Program()
@@ -23,7 +24,6 @@ public sealed class Program
     /// Runs the application.
     /// </summary>
     /// <param name="args">Command-line arguments.</param>
-    [ExcludeFromCodeCoverage(Justification = "Tested as part of system integration tests.")]
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
