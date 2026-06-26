@@ -25,8 +25,8 @@ public static class ServiceRegistrations
     {
         services
             .AddCertificatesStoreHealthChecks()
-            .AddValidatorsFromAssemblyContaining<Startup>(lifetime: ServiceLifetime.Transient)
-            .AddAutoMapper(typeof(Startup), typeof(GeneralCertificateSaveMapper))
+            .AddValidatorsFromAssemblyContaining<Program>(lifetime: ServiceLifetime.Transient)
+            .AddAutoMapper(typeof(Program), typeof(GeneralCertificateSaveMapper))
             .AddV1Registrations()
             .Configure<CertificateStoreOptions>(configuration.GetSection(CertificateStoreOptions.SectionName))
             .AddServices(configuration);

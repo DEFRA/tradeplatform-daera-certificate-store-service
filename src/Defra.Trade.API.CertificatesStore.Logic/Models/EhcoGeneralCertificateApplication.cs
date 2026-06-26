@@ -11,11 +11,11 @@ public class EhcoGeneralCertificateApplication
     /// <summary>
     /// The header document information for a use of this master message assembly.
     /// </summary>
-    public ExchangedDocument ExchangedDocument { get; set; }
+    public required ExchangedDocument ExchangedDocument { get; set; }
 
     /// <summary>
     /// A supply chain consignment specified for a use of this master message assembly.
     /// </summary>
-    public SupplyChainConsignment SupplyChainConsignment { get; set; }
+    public required SupplyChainConsignment SupplyChainConsignment { get; set; }
 }
 

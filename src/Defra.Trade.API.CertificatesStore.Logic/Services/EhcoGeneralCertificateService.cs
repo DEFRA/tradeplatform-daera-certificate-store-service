@@ -1,7 +1,6 @@
 ﻿// Copyright DEFRA (c). All rights reserved.
 // Licensed under the Open Government License v3.0.
 
-using System.Linq;
 using AutoMapper;
 using Defra.Trade.API.CertificatesStore.Database.Models;
 using Defra.Trade.API.CertificatesStore.Logic.Extensions;
@@ -26,11 +25,11 @@ public class EhcoGeneralCertificateService(
     private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     private readonly ILogger<EhcoGeneralCertificateService> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-    public async Task<EhcoGeneralCertificateApplication> SaveAsync(
+    public async Task<EhcoGeneralCertificateApplication?> SaveAsync(
         EhcoGeneralCertificateApplication generalCertificate,
         CancellationToken cancellationToken = default)
     {
-        _logger.GcReceived(generalCertificate?.ExchangedDocument?.Id);
+        _logger.GcReceived(generalCertificate?.ExchangedDocument?.Id ?? "null");
 
         string creatorId = Guid.Empty.ToString();
         var timeNow = DateTimeOffset.UtcNow;
@@ -45,6 +44,7 @@ public class EhcoGeneralCertificateService(
         certificate.LastUpdatedOn = timeNow;
         certificate.LastUpdatedSystem = SystemName;
 
+        ArgumentException.ThrowIfNullOrWhiteSpace(certificate.GeneralCertificateId);
         var existingGc = await _certificateStoreRepository.GetAsync(certificate.GeneralCertificateId, cancellationToken);
 
         if (existingGc != null)

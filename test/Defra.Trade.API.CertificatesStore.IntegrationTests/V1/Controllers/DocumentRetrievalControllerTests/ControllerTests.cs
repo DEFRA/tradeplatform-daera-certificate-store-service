@@ -6,12 +6,12 @@ using Defra.Trade.API.CertificatesStore.IntegrationTests.Infrastructure;
 
 namespace Defra.Trade.API.CertificatesStore.IntegrationTests.V1.Controllers.DocumentRetrievalControllerTests;
 
-public class ControllerTests : IClassFixture<CertificatesStoreApplicationFactory<Startup>>
+public class ControllerTests : IClassFixture<CertificatesStoreApplicationFactory<Program>>
 {
     private readonly Fixture _fixture;
-    private readonly CertificatesStoreApplicationFactory<Startup> _webApplicationFactory;
+    private readonly CertificatesStoreApplicationFactory<Program> _webApplicationFactory;
 
-    public ControllerTests(CertificatesStoreApplicationFactory<Startup> webApplicationFactory)
+    public ControllerTests(CertificatesStoreApplicationFactory<Program> webApplicationFactory)
     {
         _webApplicationFactory = webApplicationFactory;
         _fixture = new Fixture();
