@@ -7,7 +7,7 @@ namespace Defra.Trade.API.CertificatesStore.Logic.Services.Interfaces;
 
 public interface IEhcoGeneralCertificateService
 {
-    Task<EhcoGeneralCertificateApplication> SaveAsync(
+    Task<EhcoGeneralCertificateApplication?> SaveAsync(
         EhcoGeneralCertificateApplication generalCertificate,
         CancellationToken cancellationToken = default);
 }
